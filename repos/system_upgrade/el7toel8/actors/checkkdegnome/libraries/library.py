@@ -33,17 +33,17 @@ def check_kde_gnome():
                     hint="Install GNOME desktop to be able to upgrade.")
                 ])
             return
-        else:
-            # Assume both GNOME and KDE are installed in this state
-            api.current_logger().info("Upgrade can be performed, but KDE desktop will"
-                                      " be removed in favor of GNOME")
-            reporting.create_report([
-                reporting.Title("Upgrade can be performed, but KDE will be uninstalled."),
-                reporting.Summary("KDE has to be uninstalled in favor of GNOME to perform the upgrade."),
-                reporting.Severity(reporting.Severity.MEDIUM),
-                reporting.Tags([
-                    reporting.Tags.UPGRADE_PROCESS
-                ])])
+
+        # Assume both GNOME and KDE are installed in this state
+        api.current_logger().info("Upgrade can be performed, but KDE desktop will"
+                                  " be removed in favor of GNOME")
+        reporting.create_report([
+            reporting.Title("Upgrade can be performed, but KDE will be uninstalled."),
+            reporting.Summary("KDE has to be uninstalled in favor of GNOME to perform the upgrade."),
+            reporting.Severity(reporting.Severity.MEDIUM),
+            reporting.Tags([
+                reporting.Tags.UPGRADE_PROCESS
+            ])])
         api.current_logger().info("----------------------------------")
 
     # At this state we just need to detect whether any KDE/Qt app is installed to inform user
