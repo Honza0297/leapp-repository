@@ -51,8 +51,7 @@ def check_kde_gnome():
     # or not.
 
     KDEAppsFacts = next(api.consume(InstalledKdeAppsFacts))
-    apps_in_use = KDEAppsFacts.installed_apps
-    if apps_in_use:
+    if KDEAppsFacts.installed_apps:
         # upgrade can be performed, but user will loose KDE apps
         api.current_logger().info("Installed KDE/Qt apps detected.")
         reporting.create_report([
